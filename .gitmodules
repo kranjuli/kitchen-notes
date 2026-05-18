@@ -1,0 +1,4 @@
+[submodule "kitnotes"]
+	path = kitnotes
+	url = https://github.com/kranjuli/kitnotes.git
+	branch = main

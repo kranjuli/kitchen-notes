@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}{{ note.titel }} - My Kitchen Notes{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/breadcrumb.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tags.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/image.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/step.css') }}">
+{% endblock %}
+
+
+{% block breadcrumb %}
+  <nav class="breadcrumb">
+    <a href="/">Home</a>
+    {% for tag in note.tags %}›  {{ tag }}  {% endfor %}
+    ›  {{ note.titel }}
+  </nav>
+{% endblock %}
+
+  {% block content %}
+  <div class="wrapper">
+
+    <!-- MAINCONTENT -->
+    <main>
+      <div class="tags">
+        {% for tag in note.tags %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+
+      <h1>{{ note.titel }}</h1>
+      <p class="tagline">{{ note.untertitel }}</p>
+
+      <div class="photo-block">
+        {% if note.image_url %}
+          <img src="{{ note.image_url }}" alt="{{ note.titel }}" />
+        {% else %}
+          🍽️
+        {% endif %}
+      </div>
+
+      <p class="section-label">Chuẩn bị</p>
+      <div class="steps-grid">
+        {% for schritt in note.schritte %}
+        <div class="step">
+          <span class="step-num">{{ "%02d"|format(loop.index) }}</span>
+          <div>
+            <p class="step-title">{{ schritt.titel }}</p>
+            <p class="step-desc">{{ schritt.beschreibung }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="card">
+        <p class="card-title">Chi tiết</p>
+        <div class="stats-grid">
+          <div class="stat">
+            <span class="stat-val">{{ note.meta.portionen }}</span>
+            <span class="stat-lbl">Số lượng</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">{{ note.meta.vorbereitung_min }}'</span>
+            <span class="stat-lbl">Thời gian Chuẩn bị</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">{{ note.meta.kochzeit_min }}'</span>
+            <span class="stat-lbl">Thời gian nấu</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">{{ note.meta.schwierigkeit }}</span>
+            <span class="stat-lbl">Độ Khó</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="card-title">Nguyên liệu</p>
+        <ul class="ing-list">
+          {% for zutat in note.zutaten %}
+          <li>
+            <span>{{ zutat.name }}</span>
+            <span class="ing-qty">{{ zutat.menge }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      {% if note.tipp %}
+      <div class="tip-card">
+        <p class="card-title">Tipp</p>
+        <p>{{ note.tipp }}</p>
+      </div>
+      {% endif %}
+
+    </aside>
+  </div>
+{% endblock %}

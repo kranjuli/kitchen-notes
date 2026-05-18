@@ -1,0 +1,14 @@
+.wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+@media (max-width: 720px) {
+    .wrapper { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+}

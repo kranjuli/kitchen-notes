@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}All Notes - My Kitchen Notes{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tags.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/recipe-cards.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="hero-section">
+    <h1>All Notes</h1>
+    <p>{{ notes|length }} Notes in my collection</p>
+  </div>
+  <div class="grid">
+    {% for note in notes %}
+    <a class="recipe-card" href="note/{{ note.id }}">
+      <div class="card-image">
+        {% if note.image_url %}
+          <img src="{{ note.image_url }}" alt="{{ note.titel }}" />
+        {% else %}
+          🍽️
+        {% endif %}
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          {% for tag in note.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+        </div>
+        <p class="card-title">{{ note.titel }}</p>
+        <p class="card-sub">{{ note.untertitel }}</p>
+        <div class="card-meta">
+          <span>⏱ {{ note.meta.vorbereitung_min + note.meta.kochzeit_min }} Min.</span>
+          <span>👤 {{ note.meta.portionen }} Port.</span>
+          <span>{{ note.meta.schwierigkeit }}</span>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+{% endblock %}

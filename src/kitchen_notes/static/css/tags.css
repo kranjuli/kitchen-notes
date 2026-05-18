@@ -1,0 +1,32 @@
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+}
+
+h1 {
+    font-family: 'Be Vietnam Pro', serif;
+    font-size: 2.6rem;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+}
+
+.tagline {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}

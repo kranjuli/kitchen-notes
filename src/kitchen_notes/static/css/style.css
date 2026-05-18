@@ -1,0 +1,46 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+     margin: 0;
+      padding: 0;
+}
+    
+:root {
+    --bg: #f7f5f2;
+    --surface: #ffffff;
+    --accent: #2d6a4f;
+    --accent-light: #d8f3dc;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --border: #e2ddd8;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+.page-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo {
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+}
